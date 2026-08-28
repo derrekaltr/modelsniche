@@ -4,178 +4,181 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Creator Niche Dossier — OF creators as branded on Instagram</title>
-<style>/* The Artchiles — black & gold. Inlined into index.html by build.py. */
+<style>/* Novara — smart-tech dark UI. Inlined into index.html by build.py.
+   Values sampled from the brand mockup: page #000, cards #070c15, teal #03a6b4 / #127f88 / #22939f,
+   icon tile #0a2228, body grey #818693, star gold #f4b400. */
 :root{
-  --bg:#0d0d0d; --bg-2:#121211; --panel:#171716; --panel-2:#1e1d1b; --panel-3:#262521;
-  --line:#2a2925; --line-2:#3a382f;
-  --text:#e8e2d1; --text-2:#b9b2a0; --muted:#7f7968;
-  --gold:#cdb65a; --gold-2:#e2cd74; --gold-3:#8f7f3f; --gold-dim:rgba(205,182,90,.14); --gold-line:rgba(205,182,90,.35);
-  --ok:#8fcf9b; --ok-bg:rgba(84,160,104,.18); --warn:#e0c064; --warn-bg:rgba(205,182,90,.16);
-  --bad:#e08a7a; --bad-bg:rgba(180,70,55,.2); --mid:#a9a3d6; --mid-bg:rgba(120,110,190,.2);
-  --display:"Montserrat","Futura","Avenir Next","Helvetica Neue",sans-serif;
-  --sans:"Avenir Next","Montserrat","Helvetica Neue",Helvetica,sans-serif;
+  --bg:#000000; --bg-2:#020a0f; --card:#070c15; --card-2:#0b1220; --card-3:#101a2a;
+  --line:#151d2a; --line-2:#1f2a3a; --line-teal:rgba(3,166,180,.35);
+  --text:#ffffff; --text-2:#c3c7cf; --muted:#818693; --muted-2:#50535b;
+  --teal:#03a6b4; --teal-2:#22c4d2; --teal-deep:#127f88; --teal-tile:#0a2228; --teal-dim:rgba(3,166,180,.12);
+  --ok:#3ad29a; --ok-bg:rgba(58,210,154,.12); --warn:#f4b400; --warn-bg:rgba(244,180,0,.12);
+  --bad:#ff6b6b; --bad-bg:rgba(255,107,107,.12); --mid:#8ea2ff; --mid-bg:rgba(142,162,255,.14);
+  --sans:"Inter","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --display:"Inter","SF Pro Display",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
   --mono:"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
-  --rail:260px;
+  --rail:252px; --r:16px; --r-sm:10px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15.5px;line-height:1.6;
-  background-image:
-    radial-gradient(900px 500px at 105% -5%, rgba(205,182,90,.09), transparent 60%),
-    radial-gradient(700px 400px at -10% 100%, rgba(205,182,90,.05), transparent 60%);}
-::selection{background:var(--gold);color:#111}
-a{color:var(--gold-2);text-decoration:none;border-bottom:1px solid var(--gold-line)}
-a:hover{border-bottom-color:var(--gold-2)}
-code{font-family:var(--mono);font-size:.86em;background:var(--panel-2);color:var(--text);padding:.1em .4em;border-radius:3px;border:1px solid var(--line)}
-a.handle{font-family:var(--mono);font-size:.9em;border-bottom:0;color:var(--gold-2)}
-a.handle:hover{text-decoration:underline}
+body{margin:0;background:var(--bg);color:var(--text-2);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 480px at 85% -10%, rgba(3,166,180,.10), transparent 60%)}
+::selection{background:var(--teal);color:#000}
+a{color:var(--teal-2);text-decoration:none}
+a:hover{text-decoration:underline}
+code{font-family:var(--mono);font-size:.86em;background:var(--card-2);color:var(--text-2);padding:.1em .4em;border-radius:6px;border:1px solid var(--line)}
+a.handle{font-family:var(--mono);font-size:.9em;color:var(--teal-2)}
 strong{color:#fff;font-weight:600}
-em{color:var(--text)}
+em{color:var(--text-2)}
+.hl{color:var(--teal);font-style:normal}
 
 /* rail */
-.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);padding:34px 26px;border-right:1px solid var(--line);
-  background:linear-gradient(180deg,#111110 0%,#0d0d0d 100%);overflow:auto}
-.brand{display:flex;flex-direction:column;gap:14px}
-.brand .mark{width:54px;height:48px;display:block}
-.brand .wordmark{font-family:var(--display);color:var(--gold);letter-spacing:.34em;text-transform:uppercase;font-size:10px;line-height:1.35}
-.brand .wordmark b{display:block;font-size:15px;letter-spacing:.22em;font-weight:700;color:var(--gold);margin-top:2px}
-.brand .wordmark small{display:block;font-family:var(--sans);letter-spacing:.14em;font-size:9.5px;color:var(--muted);margin-top:10px;font-weight:500}
-.brand .rule{width:34px;height:1px;background:var(--gold);opacity:.7}
-.rail nav{margin-top:34px}
-.rail nav a{display:flex;gap:12px;align-items:baseline;padding:9px 8px;border:0;border-left:1px solid transparent;color:var(--text-2);font-family:var(--display);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
-.rail nav a .n{font-family:var(--mono);font-size:10px;color:var(--gold-3);min-width:20px;letter-spacing:0}
-.rail nav a:hover{color:var(--gold-2)}
-.rail nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-dim)}
-.rail .meta{position:absolute;left:26px;right:26px;bottom:26px;font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.6}
-.rail .meta b{color:var(--text-2);font-weight:600}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);padding:30px 22px;border-right:1px solid var(--line);background:var(--bg);overflow:auto}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .mark{width:40px;height:32px;display:block;flex:none}
+.brand .wordmark{font-family:var(--display);color:#fff;font-size:19px;font-weight:700;letter-spacing:.04em;line-height:1}
+.brand .wordmark b{display:block;font-size:19px;font-weight:700;letter-spacing:.04em;color:#fff}
+.brand .wordmark small{display:block;font-size:10px;color:var(--muted);margin-top:6px;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.brand .rule{display:none}
+.rail nav{margin-top:30px;display:flex;flex-direction:column;gap:4px}
+.rail nav a{display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:var(--r-sm);color:var(--muted);font-size:13.5px;font-weight:500;text-decoration:none}
+.rail nav a .n{font-family:var(--mono);font-size:10.5px;color:var(--muted-2);min-width:18px}
+.rail nav a:hover{color:#fff;background:var(--card);text-decoration:none}
+.rail nav a.active{color:#fff;background:var(--card-2);box-shadow:inset 0 0 0 1px var(--line-2)}
+.rail nav a.active .n{color:var(--teal)}
+.rail .meta{position:absolute;left:22px;right:22px;bottom:24px;font-size:11px;color:var(--muted-2);line-height:1.6}
+.rail .meta b{color:var(--muted);font-weight:600}
 .rail .meta code{font-size:10px}
 
-main{margin-left:var(--rail);padding:60px 68px 120px;max-width:1220px}
-section{margin-bottom:104px;scroll-margin-top:24px}
-.eyebrow{font-family:var(--display);font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:0 0 14px}
-h1{font-family:var(--display);font-size:30px;line-height:1.2;font-weight:700;letter-spacing:.04em;margin:0 0 18px;color:#fff;text-transform:uppercase;max-width:30ch}
-h2{font-family:var(--display);font-size:22px;line-height:1.2;font-weight:700;margin:0 0 6px;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+main{margin-left:var(--rail);padding:56px 64px 120px;max-width:1220px}
+section{margin-bottom:112px;scroll-margin-top:24px}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin:0 0 14px}
+h1{font-family:var(--display);font-size:44px;line-height:1.1;font-weight:600;letter-spacing:-.02em;margin:0 0 20px;color:#fff;max-width:26ch}
+h2{font-family:var(--display);font-size:30px;line-height:1.15;font-weight:600;margin:0 0 6px;letter-spacing:-.015em;color:#fff}
 h3,h4{font-family:var(--display)}
-.lede{font-size:16.5px;color:var(--text-2);max-width:70ch;font-weight:400}
-.rulehead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;border-bottom:1px solid var(--gold);padding-bottom:14px;margin-bottom:30px}
-.rulehead .count{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.lede{font-size:15.5px;color:var(--muted);max-width:66ch;font-weight:400;line-height:1.7}
+.rulehead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding-bottom:0;margin-bottom:26px}
+.rulehead .count{font-size:12px;color:var(--muted-2)}
 
 /* overview */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:30px 0 38px}
-.stat{background:var(--panel);padding:24px 22px;position:relative}
-.stat::before{content:"";position:absolute;left:0;top:0;height:2px;width:34px;background:var(--gold)}
-.stat .v{font-family:var(--display);font-size:42px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--gold)}
-.stat .l{font-family:var(--display);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:12px;font-weight:600}
-.twocol{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:start}
-.intro p{margin:0 0 14px;color:var(--text-2)}
-.intro strong{color:var(--text)}
-.callout{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--gold);padding:20px 22px;font-size:14.5px;color:var(--text-2)}
-.callout h4{margin:0 0 10px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:34px 0 40px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 22px 20px;position:relative}
+.stat .v{font-family:var(--display);font-size:40px;font-weight:600;line-height:1;letter-spacing:-.02em;color:#fff}
+.stat .v::after{content:"";display:block;width:36px;height:2px;background:var(--teal);margin-top:14px;border-radius:2px}
+.stat .l{font-size:11.5px;letter-spacing:.02em;color:var(--muted);margin-top:12px;font-weight:500}
+.twocol{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+.intro p{margin:0 0 14px;color:var(--muted)}
+.intro strong{color:#fff}
+.callout{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 22px;font-size:14px;color:var(--muted)}
+.callout h4{margin:0 0 12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:600;display:flex;align-items:center;gap:10px}
+.callout h4::before{content:"";width:28px;height:28px;border-radius:8px;background:var(--teal-tile);flex:none;
+  background-image:radial-gradient(circle at 50% 50%, var(--teal) 0 4px, transparent 5px)}
 .callout ul{margin:0;padding-left:18px}
-.callout li{margin:5px 0}
-.callout b{color:var(--text)}
+.callout li{margin:6px 0}
+.callout b{color:#fff;font-weight:600}
 
 /* filters */
-.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 24px;position:sticky;top:0;background:linear-gradient(180deg,var(--bg) 85%,transparent);padding:12px 0 16px;z-index:5}
-.chip{font-family:var(--display);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:8px 13px;border:1px solid var(--line-2);border-radius:2px;background:var(--panel);cursor:pointer;color:var(--text-2);user-select:none;transition:all .15s}
-.chip:hover{border-color:var(--gold-3);color:var(--gold-2)}
-.chip.on{background:var(--gold);color:#111;border-color:var(--gold)}
-.chip.fit-high.on{background:var(--ok);border-color:var(--ok)}
-.chip.fit-medium.on{background:var(--warn);border-color:var(--warn)}
-.chip.fit-low.on{background:var(--bad);border-color:var(--bad)}
-.search{font-family:var(--sans);font-size:13.5px;padding:9px 12px;border:1px solid var(--line-2);background:var(--panel);min-width:270px;border-radius:2px;color:var(--text)}
-.search::placeholder{color:var(--muted)}
-.search:focus{outline:1px solid var(--gold);outline-offset:0;border-color:var(--gold)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 24px;position:sticky;top:0;background:linear-gradient(180deg,var(--bg) 88%,transparent);padding:12px 0 16px;z-index:5}
+.chip{font-size:12.5px;font-weight:500;padding:8px 14px;border:1px solid var(--line-2);border-radius:999px;background:var(--card);cursor:pointer;color:var(--muted);user-select:none;transition:all .15s}
+.chip:hover{border-color:var(--teal);color:#fff}
+.chip.on{background:var(--teal-deep);color:#fff;border-color:var(--teal-deep)}
+.chip.fit-high.on{background:#1f8f6b;border-color:#1f8f6b}
+.chip.fit-medium.on{background:#9a7400;border-color:#9a7400}
+.chip.fit-low.on{background:#9c3a3a;border-color:#9c3a3a}
+.search{font-family:var(--sans);font-size:13.5px;padding:9px 14px;border:1px solid var(--line-2);background:var(--card);min-width:280px;border-radius:999px;color:#fff}
+.search::placeholder{color:var(--muted-2)}
+.search:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-dim)}
 .sep{width:1px;height:22px;background:var(--line-2);margin:0 4px}
 
 /* niche cards */
-.family{margin:38px 0 16px;display:flex;align-items:baseline;gap:14px}
-.family .code{font-family:var(--display);font-size:10px;letter-spacing:.28em;color:var(--gold);font-weight:700}
-.family h3{margin:0;font-size:16px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff}
-.family .ln{flex:1;height:1px;background:var(--line-2)}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.card{background:var(--panel);border:1px solid var(--line);padding:22px 24px 18px;position:relative;opacity:0;transform:translateY(8px);animation:rise .5s ease forwards;transition:border-color .2s}
-.card:hover{border-color:var(--gold-3)}
-.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),transparent 70%);opacity:.7}
+.family{margin:40px 0 16px;display:flex;align-items:center;gap:14px}
+.family .code{font-size:11px;letter-spacing:.12em;color:var(--teal);font-weight:600;text-transform:uppercase}
+.family h3{margin:0;font-size:17px;font-weight:600;color:#fff;letter-spacing:-.01em}
+.family .ln{flex:1;height:1px;background:var(--line)}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px 18px;position:relative;opacity:0;transform:translateY(8px);animation:rise .5s ease forwards;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--line-teal)}
 @keyframes rise{to{opacity:1;transform:none}}
 .card.hidden{display:none}
 .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.card .code{font-family:var(--mono);font-size:10.5px;color:var(--gold-3);letter-spacing:.08em}
-.card h4{margin:4px 0 10px;font-size:17px;font-weight:700;line-height:1.25;letter-spacing:.03em;color:#fff}
-.card .one{color:var(--text-2);font-size:14.5px;margin:0 0 14px}
-.pill{font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px;border-radius:2px;white-space:nowrap;border:1px solid transparent}
-.pill.high,.pill.medhigh{background:var(--ok-bg);color:var(--ok);border-color:rgba(143,207,155,.25)}
-.pill.medium,.pill.lowmed{background:var(--warn-bg);color:var(--warn);border-color:rgba(224,192,100,.3)}
-.pill.low{background:var(--bad-bg);color:var(--bad);border-color:rgba(224,138,122,.3)}
-.pill.mixed{background:var(--mid-bg);color:var(--mid);border-color:rgba(169,163,214,.3)}
+.card .code{font-family:var(--mono);font-size:10.5px;color:var(--muted-2);letter-spacing:.04em;display:flex;align-items:center;gap:8px}
+.card .code::before{content:"";width:22px;height:22px;border-radius:7px;background:var(--teal-tile);flex:none;
+  background-image:linear-gradient(135deg,transparent 45%,var(--teal) 45% 55%,transparent 55%)}
+.card h4{margin:10px 0 8px;font-size:19px;font-weight:600;line-height:1.25;letter-spacing:-.01em;color:#fff}
+.card .one{color:var(--muted);font-size:14px;margin:0 0 14px;line-height:1.6}
+.pill{font-size:11px;font-weight:600;letter-spacing:.02em;padding:5px 10px;border-radius:999px;white-space:nowrap;border:1px solid transparent}
+.pill.high,.pill.medhigh{background:var(--ok-bg);color:var(--ok);border-color:rgba(58,210,154,.25)}
+.pill.medium,.pill.lowmed{background:var(--warn-bg);color:var(--warn);border-color:rgba(244,180,0,.25)}
+.pill.low{background:var(--bad-bg);color:var(--bad);border-color:rgba(255,107,107,.25)}
+.pill.mixed{background:var(--mid-bg);color:var(--mid);border-color:rgba(142,162,255,.25)}
 .pill.include{background:var(--ok-bg);color:var(--ok)} .pill.review{background:var(--warn-bg);color:var(--warn)}
-.pill.exclude{background:var(--bad-bg);color:var(--bad)} .pill.unverifiable{background:var(--panel-3);color:var(--muted)}
+.pill.exclude{background:var(--bad-bg);color:var(--bad)} .pill.unverifiable{background:var(--card-3);color:var(--muted)}
 .card .ex{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
-.card .ex a{font-family:var(--mono);font-size:11.5px;background:var(--panel-2);padding:4px 8px;border-radius:2px;border:1px solid var(--line);color:var(--text-2)}
-.card .ex a:hover{border-color:var(--gold-3);color:var(--gold-2)}
-.card details{margin-top:8px;border-top:1px solid var(--line);padding-top:10px}
-.card summary{cursor:pointer;font-family:var(--display);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);list-style:none;font-weight:700}
-.card summary::before{content:"+ ";font-family:var(--mono)}
-.card details[open] summary::before{content:"– "}
+.card .ex a{font-family:var(--mono);font-size:11.5px;background:var(--card-2);padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--text-2);text-decoration:none}
+.card .ex a:hover{border-color:var(--teal);color:var(--teal-2)}
+.card details{margin-top:8px;border-top:1px solid var(--line);padding-top:12px}
+.card summary{cursor:pointer;font-size:12.5px;color:var(--teal-2);list-style:none;font-weight:600;display:flex;align-items:center;gap:8px}
+.card summary::after{content:"→";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--card-3);color:#fff;font-size:12px;margin-left:auto;transition:transform .2s}
+.card details[open] summary::after{transform:rotate(90deg)}
 .card summary::-webkit-details-marker{display:none}
 .field{margin:14px 0 0}
-.field .k{font-family:var(--display);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-weight:700}
+.field .k{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);margin-bottom:4px;font-weight:600}
 .field .v{font-size:14px;color:var(--text-2)}
-.field.confuse{background:var(--bad-bg);margin:16px -24px -18px;padding:14px 24px 16px;border-top:1px solid rgba(224,138,122,.2)}
+.field.confuse{background:var(--bad-bg);margin:16px -24px -18px;padding:14px 24px 16px;border-top:1px solid rgba(255,107,107,.2);border-radius:0 0 var(--r) var(--r)}
 .field.confuse .k{color:var(--bad)}
-.field.confuse .v{color:var(--text)}
+.field.confuse .v{color:#fff}
 .exlist{margin:6px 0 0;padding:0;list-style:none}
-.exlist li{font-size:13.5px;padding:7px 0;border-top:1px solid var(--line);color:var(--text-2)}
-.exlist li .h{font-family:var(--mono);font-size:12px;color:var(--gold-2)}
-.exlist li .s{color:var(--muted);font-family:var(--sans);font-size:11.5px;margin:0 8px}
+.exlist li{font-size:13.5px;padding:8px 0;border-top:1px solid var(--line);color:var(--text-2)}
+.exlist li .h{font-family:var(--mono);font-size:12px;color:var(--teal-2)}
+.exlist li .s{color:var(--muted-2);font-size:11.5px;margin:0 8px}
 .exlist li.note{color:var(--muted);font-style:italic}
 
 /* tables */
-table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--panel);border:1px solid var(--line)}
-th{font-family:var(--display);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);text-align:left;padding:12px 12px;border-bottom:1px solid var(--gold-line);background:var(--bg-2);font-weight:700}
-td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text-2)}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:13.5px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:13px 14px;border-bottom:1px solid var(--line-2);background:var(--card-2);font-weight:600}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text-2)}
 tr:last-child td{border-bottom:0}
-table.doc td:first-child{font-family:var(--mono);font-size:12px;white-space:nowrap;color:var(--gold-2)}
+table.doc td:first-child{font-family:var(--mono);font-size:12px;white-space:nowrap;color:var(--teal-2)}
 .fitm td{text-align:center}
-.fitm td:nth-child(2){text-align:left;font-weight:600;color:var(--text)}
-.fitm td:first-child{font-family:var(--mono);font-size:11.5px;color:var(--gold-3)}
+.fitm td:nth-child(2){text-align:left;font-weight:600;color:#fff}
+.fitm td:first-child{font-family:var(--mono);font-size:11.5px;color:var(--muted-2)}
 .fitm td:last-child{text-align:left;color:var(--muted);font-size:12.5px}
-.cell{display:inline-block;padding:4px 9px;border-radius:2px;font-family:var(--display);font-size:10px;letter-spacing:.06em;font-weight:700;min-width:64px}
-.c-g{background:var(--ok-bg);color:var(--ok)} .c-y{background:var(--warn-bg);color:var(--warn)} .c-r{background:var(--bad-bg);color:var(--bad)} .c-n{background:var(--panel-3);color:var(--text-2)}
-.legend{font-family:var(--sans);font-size:12px;color:var(--muted);margin:12px 0 0}
+.cell{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11.5px;font-weight:600;min-width:64px}
+.c-g{background:var(--ok-bg);color:var(--ok)} .c-y{background:var(--warn-bg);color:var(--warn)} .c-r{background:var(--bad-bg);color:var(--bad)} .c-n{background:var(--card-3);color:var(--text-2)}
+.legend{font-size:12px;color:var(--muted-2);margin:12px 0 0}
 
 /* rules doc */
-.doc-body h2{font-size:18px;margin:48px 0 12px;padding-top:22px;border-top:1px solid var(--line-2);letter-spacing:.1em}
-.doc-body h3{font-size:14px;margin:28px 0 10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-2);font-weight:700}
-.doc-body h4{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:24px 0 8px;font-weight:700}
-.doc-body p{max-width:78ch;color:var(--text-2)}
-.doc-body table{margin:12px 0 20px}
-.doc-body ol,.doc-body ul{max-width:78ch;color:var(--text-2)}
+.doc-body h2{font-size:22px;margin:48px 0 12px;padding-top:24px;border-top:1px solid var(--line)}
+.doc-body h3{font-size:16px;margin:28px 0 10px;color:#fff;font-weight:600}
+.doc-body h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin:24px 0 8px;font-weight:600}
+.doc-body p{max-width:78ch;color:var(--muted)}
+.doc-body table{margin:12px 0 22px}
+.doc-body ol,.doc-body ul{max-width:78ch;color:var(--muted)}
 .doc-body hr{border:0;border-top:1px solid var(--line);margin:32px 0}
 
 /* audit */
 .audit td.ev{font-family:var(--mono);font-size:11.5px}
-.audit td .sig{display:inline-block;font-family:var(--mono);font-size:10.5px;padding:2px 6px;border-radius:2px;margin:1px 2px 1px 0;background:var(--panel-3);color:var(--text-2)}
+.audit td .sig{display:inline-block;font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:999px;margin:1px 2px 1px 0;background:var(--card-3);color:var(--text-2)}
 .audit td .sig.s{background:var(--ok-bg);color:var(--ok)} .audit td .sig.m{background:var(--mid-bg);color:var(--mid)}
-.audit td .sig.w{background:var(--panel-3);color:var(--text-2)} .audit td .sig.x{background:var(--bad-bg);color:var(--bad)} .audit td .sig.g{background:var(--warn-bg);color:var(--warn)}
+.audit td .sig.w{background:var(--card-3);color:var(--muted)} .audit td .sig.x{background:var(--bad-bg);color:var(--bad)} .audit td .sig.g{background:var(--warn-bg);color:var(--warn)}
 .audit tr.detail td{background:var(--bg-2);font-size:13px}
 .audit tr.detail .kv{font-family:var(--mono);font-size:11.5px;margin:3px 0;color:var(--text-2)}
-.audit tr.detail .kv b{color:var(--gold-2);font-weight:600}
+.audit tr.detail .kv b{color:var(--teal-2);font-weight:600}
 .audit tbody tr.row{cursor:pointer}
-.audit tbody tr.row:hover td{background:var(--gold-dim)}
+.audit tbody tr.row:hover td{background:var(--teal-dim)}
 .audit .ok{color:var(--ok);font-family:var(--mono)} .audit .bad{color:var(--bad);font-family:var(--mono)}
-.score{font-family:var(--mono);font-weight:600;color:var(--text)}
-.bar{display:inline-block;width:56px;height:5px;background:var(--panel-3);vertical-align:middle;margin-left:8px;border-radius:2px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--gold)}
+.score{font-family:var(--mono);font-weight:600;color:#fff}
+.bar{display:inline-block;width:56px;height:5px;background:var(--card-3);vertical-align:middle;margin-left:8px;border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--teal-deep),var(--teal-2))}
 
-.foot{font-family:var(--sans);font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:60px}
+.foot{font-size:12px;color:var(--muted-2);border-top:1px solid var(--line);padding-top:18px;margin-top:60px}
 @media (max-width:1000px){.rail{display:none}main{margin-left:0;padding:32px 22px}.cards{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.twocol{grid-template-columns:1fr}}
 @media print{body{background:#fff;color:#111}.rail,.toolbar{display:none}main{margin:0;padding:0}.card{break-inside:avoid;animation:none;opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <aside class="rail">
-  <div class="brand"><svg class="mark" viewBox="0 0 100 88" xmlns="http://www.w3.org/2000/svg" aria-label="The Artchiles"><defs><clipPath id="mk"><polygon points="50,0 100,29 100,88 0,88 0,29"/></clipPath></defs><g clip-path="url(#mk)" fill="#cdb65a"><polygon points="50,2 98,31 78,31 50,14 22,31 2,31"/><polygon points="0,29 19,29 19,88 0,88"/><polygon points="27,39 100,39 100,53 40,53"/><polygon points="27,61 100,61 100,75 40,75"/></g></svg><div class="wordmark">The<b>Artchiles</b><small>Creator Niche Dossier · Instagram</small></div><span class="rule"></span></div>
+  <div class="brand"><svg class="mark" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg" aria-label="Novara"><g fill="#03a6b4"><polygon points="0,52 26,26 60,26 46,40 40,40 28,52"/><polygon points="100,28 74,54 40,54 54,40 60,40 72,28"/><polygon points="0,66 14,52 40,52 26,66"/><polygon points="60,28 74,14 100,14 86,28"/></g></svg><div class="wordmark"><b>NOVARA</b><small>Creator niche dossier</small></div></div>
   <nav>
     <a href="#overview"><span class="n">01</span>Overview</a>
     <a href="#niches"><span class="n">02</span>Niche explorer</a>
@@ -191,7 +194,7 @@ table.doc td:first-child{font-family:var(--mono);font-size:12px;white-space:nowr
 <main>
 <section id="overview">
   <p class="eyebrow">01 · Overview</p>
-  <h1>How OnlyFans creators brand themselves on Instagram — and how to tell them apart from influencers who don't.</h1>
+  <h1>How OnlyFans creators <span class="hl">brand themselves</span> on Instagram — and how to tell them apart from influencers who don't.</h1>
   <p class="lede">A field guide for matching new creators to a niche they can credibly execute, plus the rules for tagging accounts so fitness models and brand-deal influencers stay out of the pool.</p>
   <div class="stats">
     <div class="stat"><div class="v">21</div><div class="l">Niches · 6 families</div></div>
@@ -212,8 +215,8 @@ table.doc td:first-child{font-family:var(--mono);font-size:12px;white-space:nowr
           <li><b>Wrong channel for Instagram:</b> femdom/findom — lives on X and Telegram.</li>
         </ul>
       </div>
-      <div class="callout" style="margin-top:16px;border-left-color:var(--ok)">
-        <h4 style="color:var(--ok)">The one rule that matters</h4>
+      <div class="callout" style="margin-top:16px">
+        <h4>The one rule that matters</h4>
         <p style="margin:0">OF creators <em>obscure</em> the commercial relationship (coded highlights, buffered links, "yes I have one ⬇️"); influencers <em>name</em> it (brand, code, coaching CTA). The classifier is a detector of deliberate obscurity plus a funnel. An OF link alone is not enough — SFW-OF athletes exist.</p>
       </div>
     </div>
@@ -222,7 +225,7 @@ table.doc td:first-child{font-family:var(--mono);font-size:12px;white-space:nowr
 
 <section id="niches">
   <p class="eyebrow">02 · Niche explorer</p>
-  <div class="rulehead"><h2>Twenty-one niches, six families</h2><span class="count" id="nicheCount"></span></div>
+  <div class="rulehead"><h2>Twenty-one niches, <span class="hl">six families</span></h2><span class="count" id="nicheCount"></span></div>
   <div class="toolbar">
     <input class="search" id="q" type="search" placeholder="Search niche, handle, keyword…">
     <span class="sep"></span>
@@ -240,7 +243,7 @@ table.doc td:first-child{font-family:var(--mono);font-size:12px;white-space:nowr
 
 <section id="matrix">
   <p class="eyebrow">03 · Fit matrix</p>
-  <div class="rulehead"><h2>Barrier, saturation, persona load, Instagram risk</h2></div>
+  <div class="rulehead"><h2>Barrier, saturation, <span class="hl">persona load,</span> Instagram risk</h2></div>
   <table class="fitm"><thead><tr><th>#</th><th>Niche</th><th>New-creator fit</th><th>Barrier</th><th>Saturation</th><th>Persona load</th><th>IG-risk</th><th>Best paired with</th></tr></thead><tbody><tr><td>A1</td><td>Girl-next-door</td><td><span class="cell c-g"><strong>High</strong></span></td><td><span class="cell c-g">Very low</span></td><td><span class="cell c-r">Very high</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td>any trait/lifestyle</td></tr><tr><td>A2</td><td>Glamour / bombshell</td><td><span class="cell c-r">Low–Med</span></td><td><span class="cell c-r">High (budget)</span></td><td><span class="cell c-r">High</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td>pin-up, fitness</td></tr><tr><td>A3</td><td>Alt / goth / tattooed</td><td><span class="cell c-g"><strong>High</strong> (if real)</span></td><td><span class="cell c-g">Low–Med</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-y">Med</span></td><td><span class="cell c-g">Low</span></td><td>cosplay, MILF</td></tr><tr><td>A4</td><td>Bimbo / Barbie</td><td><span class="cell c-y">Med</span></td><td><span class="cell c-y">Med (cosmetic)</span></td><td><span class="cell c-y">Med</span></td><td><span class="cell c-r">Very high</span></td><td><span class="cell c-r">High (multi-account)</span></td><td>glamour, music</td></tr><tr><td>A5</td><td>Pin-up / retro</td><td><span class="cell c-y">Med</span></td><td><span class="cell c-y">Med (styling)</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-y">Med</span></td><td><span class="cell c-g">Low</span></td><td>glamour, cosplay</td></tr><tr><td>B1</td><td>GFE</td><td><span class="cell c-g"><strong>High</strong> (DM-skill)</span></td><td><span class="cell c-g">Very low</span></td><td><span class="cell c-r">High</span></td><td><span class="cell c-r">High (relational)</span></td><td><span class="cell c-g">Low</span></td><td>GND, petite, cosplay</td></tr><tr><td>B2</td><td>Profession persona</td><td><span class="cell c-y">Med</span></td><td><span class="cell c-g">Low (needs true story)</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-y">Med</span></td><td><span class="cell c-y">Med (pointer acct)</span></td><td>GND, MILF</td></tr><tr><td>B3</td><td>Femdom / findom</td><td><span class="cell c-r">Low on IG</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-r">Very high</span></td><td><span class="cell c-r">Very high</span></td><td>streamer, goth</td></tr><tr><td>B4</td><td>Comedy / personality</td><td><span class="cell c-y">Med</span></td><td><span class="cell c-y">Med (talent)</span></td><td><span class="cell c-g">Very low</span></td><td><span class="cell c-r">High</span></td><td><span class="cell c-g">Low</span></td><td>GFE, MILF</td></tr><tr><td>C1</td><td>Country / cowgirl</td><td><span class="cell c-g"><strong>High</strong> (if authentic)</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-y">Med</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-y">Med (dual acct)</span></td><td>fitness, MILF</td></tr><tr><td>C2</td><td>Stoner / 420</td><td><span class="cell c-y">Med</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-r">High (backup mandatory)</span></td><td>GND, alt</td></tr><tr><td>C3</td><td>Outdoorsy / nature</td><td><span class="cell c-y">Med</span></td><td><span class="cell c-y">Med (locations)</span></td><td><span class="cell c-g">Very low</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td>yoga, pin-up</td></tr><tr><td>C4</td><td>Beach / bikini</td><td><span class="cell c-y">Med</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-r">Very high</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-y">Med</span></td><td>redhead, cosplay</td></tr><tr><td>D1</td><td>MILF / mature</td><td><span class="cell c-g"><strong>High</strong> (35+)</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td>comedy, country, goth</td></tr><tr><td>D2</td><td>Trait-as-brand</td><td><span class="cell c-g">High as modifier</span></td><td><span class="cell c-g">Very low</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">None</span></td><td><span class="cell c-g">Low</span></td><td>everything</td></tr><tr><td>D3</td><td>Fitness-forward</td><td><span class="cell c-y">Med</span></td><td><span class="cell c-y">Med (physique)</span></td><td><span class="cell c-r">High</span></td><td><span class="cell c-y">Med (two identities)</span></td><td><span class="cell c-y">Med</span></td><td>country, male</td></tr><tr><td>E1</td><td>Trans</td><td><span class="cell c-y">Med–High</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-y">Med</span></td><td><span class="cell c-r">High</span></td><td>fitness, cosplay</td></tr><tr><td>E2</td><td>Male</td><td><span class="cell c-r">Low–Med</span></td><td><span class="cell c-r">High (physique/hook)</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-y">Med</span></td><td><span class="cell c-y">Med</span></td><td>fitness, streamer</td></tr><tr><td>F1</td><td>E-girl / cosplay</td><td><span class="cell c-y">Med</span></td><td><span class="cell c-y">Med (craft)</span></td><td><span class="cell c-y">Med</span></td><td><span class="cell c-y">Med</span></td><td><span class="cell c-g">Low</span></td><td>alt, streamer</td></tr><tr><td>F2</td><td>Streamer crossover</td><td><span class="cell c-r">Low (audience-first)</span></td><td><span class="cell c-r">High (audience)</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td>cosplay, findom</td></tr><tr><td>F3</td><td>Musician / artist</td><td><span class="cell c-r">Low</span></td><td><span class="cell c-r">Very high (career)</span></td><td><span class="cell c-g">Very low</span></td><td><span class="cell c-g">Low</span></td><td><span class="cell c-g">Low</span></td><td>bimbo, comedy</td></tr></tbody></table>
   <p class="legend">Green = favourable for a new creator (high fit, low barrier, low saturation, low risk). Red = unfavourable. Grey = neutral or not scaled.</p>
   <p class="lede" style="margin-top:18px"><strong>Reading it for onboarding.</strong> Highest-probability starting points for a brand-new creator with no audience: A1 (as a base) + one of A3 / C1 / D1 / D2 as the differentiator, with B1 (GFE) as the DM operating model. Niches that need something the creator must already have: A2 (budget), F2 (audience), F3 (career), E2 (physique/hook). Niches where Instagram is the wrong primary channel: B3.</p>
@@ -248,14 +251,14 @@ table.doc td:first-child{font-family:var(--mono);font-size:12px;white-space:nowr
 
 <section id="provisional">
   <p class="eyebrow">04 · Provisional niches &amp; cross-cutting modifiers</p>
-  <div class="rulehead"><h2>Real, but not yet two verified examples</h2></div>
+  <div class="rulehead"><h2>Real, but <span class="hl">not yet</span> two verified examples</h2></div>
   <p class="lede">These surfaced in research and are included so the taxonomy is complete. They are not equal in maturity to the families above; several are better modelled as a modifier or tone layered onto a host niche.</p>
   <table class="doc prov"><thead><tr><th>Concept</th><th>Status</th><th>What was found</th></tr></thead><tbody><tr><td><strong>College / student</strong></td><td>Provisional niche</td><td>Named as a category by creators in press (Fox News "college dream girl"); no live IG located. Likely folded into GND/GFE branding with dorm/campus settings.</td></tr><tr><td><strong>Trad-wife / homemaker / cottagecore</strong></td><td>Emerging, single-creator</td><td>Press cycle around Anya Lacey (<code><a class="handle" href="https://www.instagram.com/theanyamatusevich/" target="_blank" rel="noopener">@theanyamatusevich</a></code>, listed under C1); no second practitioner. Treat as a <em>flavour</em> of country.</td></tr><tr><td><strong>Nerdy / bookish</strong></td><td>Merged into F1 / A1</td><td>"Bookish" did not surface anywhere; "nerdy" is cosplay/gamer-coded (<code><a class="handle" href="https://www.instagram.com/petitelilpeach/" target="_blank" rel="noopener">@petitelilpeach</a></code> "shy nerdy girl next door").</td></tr><tr><td><strong>Y2K / bratty</strong></td><td>Split: Y2K = sub-palette of A4/A3; "bratty" = tone axis</td><td>Y2K never appears as an OF marketing term; "brat"/"stoner brat" appear as persona labels layered on other niches.</td></tr><tr><td><strong>Grunge / 90s-skater</strong></td><td>Merged into A3</td><td>Only credible mention is as an alt/goth long-tail variant.</td></tr><tr><td><strong>Luxury / sugar / "spoil me"</strong></td><td>Modifier, not a niche</td><td>"Spoil me" wishlist/Throne CTAs appear <em>across</em> niches (<code><a class="handle" href="https://www.instagram.com/julietinthewild/" target="_blank" rel="noopener">@julietinthewild</a></code>, <code><a class="handle" href="https://www.instagram.com/thesilviasaige/" target="_blank" rel="noopener">@thesilviasaige</a></code>, fit-couple Linktree). No creator branded primarily as luxury-travel with a live IG; <code><a class="handle" href="https://www.instagram.com/luxurykate/" target="_blank" rel="noopener">@luxurykate</a></code> is a 74-follower private account. Closest real categories: GFE with a luxury skin, or findom.</td></tr><tr><td><strong>Wellness / yoga / "goddess"</strong></td><td>Provisional</td><td><code><a class="handle" href="https://www.instagram.com/justliketrevor/" target="_blank" rel="noopener">@justliketrevor</a></code> (118K male yoga coach; Linktree lists "OnlyFans (21+ only)", IG sanitized) and <code><a class="handle" href="https://www.instagram.com/julietinthewild/" target="_blank" rel="noopener">@julietinthewild</a></code> (Yoga highlight). Female yoga-OF handles were dead/private. "Goddess" language belongs to findom (B3), not wellness.</td></tr><tr><td><strong>Curvy / thick / BBW</strong></td><td>Provisional (agency-confirmed niche, thin IG)</td><td>Agency blogs list it as a core body-type niche and Pippin runs curvy/thick lists, but every listicle handle was dead on IG; only <code><a class="handle" href="https://www.instagram.com/curvybaddie18/" target="_blank" rel="noopener">@curvybaddie18</a></code> (315) verified. Recommend IG-native discovery.</td></tr><tr><td><strong>Couples</strong></td><td>Provisional — accounts get removed</td><td>Every couples handle from research (<code>leolulu.official</code>, <code>itshannahandjames_</code>, <code>fit.factory.couple</code>, <code>theswingnation</code>) was unavailable on IG. The niche is real (OnlyMonster/Desirely) but appears to survive poorly on Instagram; expect couples to brand via one partner's account.</td></tr><tr><td><strong>Twin / sibling duo</strong></td><td>Adjacent to couples</td><td>Newsweek/The Tab coverage; not verified on IG.</td></tr><tr><td><strong>Feet / fetish-coded</strong></td><td>Sub-tag</td><td>Appears as coded highlights inside other niches (<code><a class="handle" href="https://www.instagram.com/spicytattoodoll/" target="_blank" rel="noopener">@spicytattoodoll</a></code> "XL t o e s").</td></tr></tbody></table>
 </section>
 
 <section id="rules">
   <p class="eyebrow">05 · Tagging rules</p>
-  <div class="rulehead"><h2>Is this Instagram account OF-branded?</h2><span class="count">rendered from tagging-rules.md</span></div>
+  <div class="rulehead"><h2>Is this Instagram account <span class="hl">OF-branded?</span></h2><span class="count">rendered from tagging-rules.md</span></div>
   <div class="doc-body"><p>Companion to <a href="#niches"><code>niches.md</code></a>. Goal: decide, from the Instagram profile alone (bio, link, highlights, category label, pinned posts), whether an account is branded as an OnlyFans/Fansly/Fanvue creator — and specifically to <strong>exclude fitness models and general influencers who are not</strong>. Every rule below was derived from signals actually observed on live profiles on 2026-08-26; examples are cited so the rule can be re-checked.</p>
 <p>Principle: <strong>OF creators obscure the commercial relationship (euphemism, coded highlights, buffered links) because naming it risks enforcement; influencers name it (brand, code, coaching CTA) because it's compliant.</strong> The classifier is mostly a detector of <em>deliberate obscurity + a funnel</em>.</p>
 <hr>
@@ -314,7 +317,7 @@ table.doc td:first-child{font-family:var(--mono);font-size:12px;white-space:nowr
 
 <section id="audit">
   <p class="eyebrow">06 · Classifier audit</p>
-  <div class="rulehead"><h2>The rules, run against every verified profile</h2><span class="count">58 profiles · 58 match expected verdict</span></div>
+  <div class="rulehead"><h2>The rules, run against <span class="hl">every verified profile</span></h2><span class="count">58 profiles · 58 match expected verdict</span></div>
   <p class="lede">Each row is a profile as observed on 2026-08-26. Click a row to see the matched evidence. <code>S</code> strong · <code>M</code> medium · <code>W</code> weak · <code>X</code> exclude · <code>G</code> gray zone. Include ≥ 3, review = 2, exclude otherwise.</p>
   <div class="toolbar" style="position:static;border:0;padding:8px 0">
     <span class="chip on" data-v="all">All</span>
@@ -328,7 +331,7 @@ table.doc td:first-child{font-family:var(--mono);font-size:12px;white-space:nowr
 
 <section id="method">
   <p class="eyebrow">07 · Method &amp; caveats</p>
-  <div class="rulehead"><h2>How this was built</h2></div>
+  <div class="rulehead"><h2>How this was <span class="hl">built</span></h2></div>
   <ul class="lede"><li>Six parallel web-research passes (agency blogs, listicles, press) established <em>which niches exist and how they're named</em>; they were poor at yielding live handles — the web is polluted by an SEO-spam network on hijacked <code>.edu</code> subdomains, and Reddit was effectively unreachable. Nothing from that network is cited.</li><li>Live handles came from opening ~150 Instagram profiles directly, plus Linktree pages (which are fetchable and map cleanly to IG); Beacons pages block fetching and aren't reachable from the browser extension.</li><li>Two social-graph signals worth noting for future discovery: many verified creators show "Followed by wearenudepr" (an OF PR agency), and IG's own "similar accounts" panel is likely the best niche-adjacent discovery tool — neither was used systematically here.</li><li>Follower counts and highlight names are as displayed on 2026-08-26 and will drift.</li></ul>
   <div class="foot">Sources of truth are the markdown files in the repo; this page is generated from them. Handles, follower counts and highlight names drift — re-verify before acting on any single account.</div>
 </section>
