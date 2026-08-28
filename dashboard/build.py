@@ -257,19 +257,16 @@ def audit() -> list[dict]:
 # Template
 # --------------------------------------------------------------------------- #
 
-# Approximation of the Novara double-chevron "N" mark. Drop the real mark at dashboard/brand/logo.svg to override.
+# DashMin-style outline hexagon mark. Drop a real mark at dashboard/brand/logo.svg to override.
 FALLBACK_LOGO = (
-    '<svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg" aria-label="Novara">'
-    '<g fill="#03a6b4">'
-    '<polygon points="0,52 26,26 60,26 46,40 40,40 28,52"/>'
-    '<polygon points="100,28 74,54 40,54 54,40 60,40 72,28"/>'
-    '<polygon points="0,66 14,52 40,52 26,66"/>'
-    '<polygon points="60,28 74,14 100,14 86,28"/>'
-    '</g></svg>'
+    '<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-label="Creator Niche Dossier">'
+    '<polygon points="20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>'
+    '<polygon points="20,12 27,16 27,24 20,28 13,24 13,16" fill="#c26bbc"/>'
+    '</svg>'
 )
 
 TEMPLATE = r"""<!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -278,7 +275,8 @@ TEMPLATE = r"""<!doctype html>
 </head>
 <body>
 <aside class="rail">
-  <div class="brand">__LOGO__<div class="wordmark"><b>NOVARA</b><small>Creator niche dossier</small></div></div>
+  <div class="brand" style="color:var(--text)">__LOGO__<div class="wordmark"><b>Dossier</b><small>Creator niches · Instagram</small></div></div>
+  <div class="section">Playbook</div>
   <nav>
     <a href="#overview"><span class="n">01</span>Overview</a>
     <a href="#niches"><span class="n">02</span>Niche explorer</a>
@@ -291,10 +289,12 @@ TEMPLATE = r"""<!doctype html>
   <div class="meta">Handles verified <b>__VERIFIED__</b><br>Built <b>__BUILT__</b> from <code>niches.md</code>, <code>tagging-rules.md</code>, <code>classifier/</code><br><br>Regenerate: <code>python3 dashboard/build.py</code></div>
 </aside>
 
+<div class="themebar"><button class="tbtn" id="themeToggle" title="Toggle light / dark"><span class="moon">🌙</span><span class="sun">☀️</span></button></div>
+
 <main>
 <section id="overview">
   <p class="eyebrow">01 · Overview</p>
-  <h1>How OnlyFans creators <span class="hl">brand themselves</span> on Instagram — and how to tell them apart from influencers who don't.</h1>
+  <h1>How OnlyFans creators brand themselves on Instagram — and how to tell them apart from influencers who don't.</h1>
   <p class="lede">A field guide for matching new creators to a niche they can credibly execute, plus the rules for tagging accounts so fitness models and brand-deal influencers stay out of the pool.</p>
   <div class="stats">
     <div class="stat"><div class="v">__N_NICHES__</div><div class="l">Niches · __N_FAMILIES__ families</div></div>
@@ -325,7 +325,7 @@ TEMPLATE = r"""<!doctype html>
 
 <section id="niches">
   <p class="eyebrow">02 · Niche explorer</p>
-  <div class="rulehead"><h2>Twenty-one niches, <span class="hl">six families</span></h2><span class="count" id="nicheCount"></span></div>
+  <div class="rulehead"><h2>Twenty-one niches, six families</h2><span class="count" id="nicheCount"></span></div>
   <div class="toolbar">
     <input class="search" id="q" type="search" placeholder="Search niche, handle, keyword…">
     <span class="sep"></span>
@@ -343,7 +343,7 @@ TEMPLATE = r"""<!doctype html>
 
 <section id="matrix">
   <p class="eyebrow">03 · Fit matrix</p>
-  <div class="rulehead"><h2>Barrier, saturation, <span class="hl">persona load,</span> Instagram risk</h2></div>
+  <div class="rulehead"><h2>Barrier, saturation, persona load, Instagram risk</h2></div>
   __FIT_TABLE__
   <p class="legend">Green = favourable for a new creator (high fit, low barrier, low saturation, low risk). Red = unfavourable. Grey = neutral or not scaled.</p>
   <p class="lede" style="margin-top:18px">__FIT_READING__</p>
@@ -351,20 +351,20 @@ TEMPLATE = r"""<!doctype html>
 
 <section id="provisional">
   <p class="eyebrow">04 · Provisional niches &amp; cross-cutting modifiers</p>
-  <div class="rulehead"><h2>Real, but <span class="hl">not yet</span> two verified examples</h2></div>
+  <div class="rulehead"><h2>Real, but not yet two verified examples</h2></div>
   <p class="lede">These surfaced in research and are included so the taxonomy is complete. They are not equal in maturity to the families above; several are better modelled as a modifier or tone layered onto a host niche.</p>
   __PROV_TABLE__
 </section>
 
 <section id="rules">
   <p class="eyebrow">05 · Tagging rules</p>
-  <div class="rulehead"><h2>Is this Instagram account <span class="hl">OF-branded?</span></h2><span class="count">rendered from tagging-rules.md</span></div>
+  <div class="rulehead"><h2>Is this Instagram account OF-branded?</h2><span class="count">rendered from tagging-rules.md</span></div>
   <div class="doc-body">__RULES__</div>
 </section>
 
 <section id="audit">
   <p class="eyebrow">06 · Classifier audit</p>
-  <div class="rulehead"><h2>The rules, run against <span class="hl">every verified profile</span></h2><span class="count">__N_AUDIT__ profiles · __AUDIT_OK__ match expected verdict</span></div>
+  <div class="rulehead"><h2>The rules, run against every verified profile</h2><span class="count">__N_AUDIT__ profiles · __AUDIT_OK__ match expected verdict</span></div>
   <p class="lede">Each row is a profile as observed on __VERIFIED__. Click a row to see the matched evidence. <code>S</code> strong · <code>M</code> medium · <code>W</code> weak · <code>X</code> exclude · <code>G</code> gray zone. Include ≥ 3, review = 2, exclude otherwise.</p>
   <div class="toolbar" style="position:static;border:0;padding:8px 0">
     <span class="chip on" data-v="all">All</span>
@@ -378,13 +378,15 @@ TEMPLATE = r"""<!doctype html>
 
 <section id="method">
   <p class="eyebrow">07 · Method &amp; caveats</p>
-  <div class="rulehead"><h2>How this was <span class="hl">built</span></h2></div>
+  <div class="rulehead"><h2>How this was built</h2></div>
   <ul class="lede">__NOTES__</ul>
   <div class="foot">Sources of truth are the markdown files in the repo; this page is generated from them. Handles, follower counts and highlight names drift — re-verify before acting on any single account.</div>
 </section>
 </main>
 
 <script>
+(function(){const t=localStorage.getItem('dossier-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();
+document.getElementById('themeToggle').addEventListener('click',()=>{const h=document.documentElement;const t=h.getAttribute('data-theme')==='light'?'dark':'light';h.setAttribute('data-theme',t);localStorage.setItem('dossier-theme',t);});
 const DATA = __DATA__;
 const AUDIT = __AUDIT__;
 

@@ -1,1 +1,1 @@
-Brand: Novara (smart-tech transportation kit). Drop the official mark here as logo.svg and any font files (Inter/SF Pro-class) — build.py inlines logo.svg automatically.
+Brand: DashMin admin-dashboard kit (ThemeWarriors). Typeface: Quicksand (Google Fonts) — drop Quicksand .ttf/.woff2 files here to embed offline; drop logo.svg to replace the hexagon mark.
