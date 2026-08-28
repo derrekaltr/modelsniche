@@ -206,7 +206,7 @@ HANDLE_STEMS = {
     "D1": ["mommy", "milf", "mama"],
     "D2": ["redhead", "ginger", "petite"],
     "D3": ["fit", "gym"],
-    "E1": ["trans"],
+    "E1": ["tgirl", "transgirl"],          # bare "trans" hits "transformation" in coach URLs
     "E2": ["twink", "hunk", "himbo", "boy"],
     "F1": ["cosplay", "gamer", "waifu", "egirl", "meow"],
     "F2": ["twitch", "stream"],
