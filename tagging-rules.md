@@ -175,6 +175,25 @@ Applying the rules to every example in `niches.md` and to the control set. ✔ =
 | `@connerbobay` | none | 0 | ✔ (listicle claimed OF; IG shows "Husband · Father · Jesus", no funnel — correct negative) |
 | `@noelle_best` | none | 0 | ✔ (listicle claimed OF; nothing on IG) |
 
+### Prospect batch 01 (12 real prospects, collected logged-out on 2026-08-28)
+
+| Handle | Result | What decided it |
+|---|---|---|
+| `@amber_hazee`, `@guadadia` | **include** (4) | Instagram 18+ age-gate on the profile (S7) — nothing else visible logged-out |
+| `@shaynaholt`, `@lilia.angelx` | review (2) | "Restricted profile — unavailable for certain audiences" (M8); needs a logged-in look |
+| `@valebragg`, `@jane.mautin` | **include** (3) | `.vip` domain → Supalink landing: "Your dream girl… What you're looking for 🤍🩵" (M2 + M3) |
+| `@lizakovalenkoo` | **include** (3) | IG reads "Fashion / Lifestyle · @revolve ambassador" (X3, X4) but `lizaswrld.com` → Supalink "Your dream girl 🖤 Chat with me" — include overrides exclude; resolved via decision-tree step 4 |
+| `@4mbuh` | **include** (3) | `4mbuh.com` → GetAllMyLinks "MORE OF ME" → `onlyfans.com/ambzy`; "👀" highlight, Twitch/Discord stack |
+| `@alarahbelle` | **include** (3) | `alarah.link` shows an 18+ "Sensitive Content" gate before the tiles (the gate is the tell); bio carries a supplement discount code (X4) — overridden |
+| `@anllela_sagra` | **include** (3, celebrity tier) | "Exclusive" highlight + `.fit` domain → Supalink "Explore More 💕😉"; 26.7M followers → G6 flag |
+| `@hcoxofficial` | exclude (1) | "Chevy Girl 🐾 Bulldog Momma", no link, no highlights — nothing to act on |
+| `@lalovetheboss` | exclude (0) | Artist/actress, music smart-link, management email — musician, not OF-branded |
+
+**What this batch taught the rules**
+- **Instagram's own logged-out gates are the strongest cheap signal**: an 18+ age-gate (S7) or "certain audiences" restriction (M8) is platform-assigned and visible without logging in. Four of twelve prospects carried one.
+- **Supalink** (`supalink.ai`, usually behind a vanity `.vip` / `.fit` / `.com`) is an OF-funnel landing tool; its GFE copy ("Your dream girl", "What you're looking for", "Chat with me") is as good as an OF tile. Added to M2.
+- **Resolve the link before deciding.** Five of the seven includes were only decidable by opening the bio link — the profile alone scored 2. The collector now records what each link resolves to.
+
 **Misfires observed and how the rules were adjusted**
 - Listicle presence alone (W2) produced several false positives (`@connerbobay`, `@noelle_best`, `@gabbyepstein`) → W2 demoted to Weak, never sufficient.
 - "Has an OF link" alone would have included `@moana.17` → G3 added (OF link must be paired with adult-coded CTA).

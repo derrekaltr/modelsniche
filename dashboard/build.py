@@ -239,10 +239,16 @@ def parse_niches(md: str) -> dict:
 # --------------------------------------------------------------------------- #
 
 def audit() -> list[dict]:
+    import glob
+    sources = [("fixtures", os.path.join(ROOT, "classifier", "fixtures", "profiles.jsonl"))]
+    for f in sorted(glob.glob(os.path.join(ROOT, "prospects", "*.jsonl"))):
+        sources.append((os.path.splitext(os.path.basename(f))[0], f))
     rows = []
-    for p in load(os.path.join(ROOT, "classifier", "fixtures", "profiles.jsonl")):
+    for batch, path in sources:
+      for p in load(path):
         r = classify(p)
         rows.append({
+            "batch": batch, "link_resolves_to": p.get("link_resolves_to", ""), "restricted": p.get("restricted", ""),
             "handle": r.handle, "score": r.score, "verdict": r.verdict, "tier": r.tier,
             "signals": r.signals, "excludes": r.excludes, "gray": r.gray, "niches": r.niches,
             "evidence": {k: str(v) for k, v in r.evidence.items()}, "notes": r.notes,
@@ -300,7 +306,7 @@ TEMPLATE = r"""<!doctype html>
     <div class="stat"><div class="v">__N_NICHES__</div><div class="l">Niches · __N_FAMILIES__ families</div></div>
     <div class="stat"><div class="v">__N_EXAMPLES__</div><div class="l">Verified example handles</div></div>
     <div class="stat"><div class="v">__N_PROV__</div><div class="l">Provisional niches &amp; modifiers</div></div>
-    <div class="stat"><div class="v">__N_AUDIT__</div><div class="l">Profiles in classifier audit · __AUDIT_OK__ pass</div></div>
+    <div class="stat"><div class="v">__N_AUDIT__</div><div class="l">Profiles classified · __N_PROSPECTS__ prospects</div></div>
   </div>
   <div class="twocol">
     <div class="intro">__INTRO__</div>
@@ -364,7 +370,7 @@ TEMPLATE = r"""<!doctype html>
 
 <section id="audit">
   <p class="eyebrow">06 · Classifier audit</p>
-  <div class="rulehead"><h2>The rules, run against every verified profile</h2><span class="count">__N_AUDIT__ profiles · __AUDIT_OK__ match expected verdict</span></div>
+  <div class="rulehead"><h2>The rules, run against every verified profile</h2><span class="count">__N_AUDIT__ profiles · __AUDIT_OK__ fixtures match expected verdict</span></div>
   <p class="lede">Each row is a profile as observed on __VERIFIED__. Click a row to see the matched evidence. <code>S</code> strong · <code>M</code> medium · <code>W</code> weak · <code>X</code> exclude · <code>G</code> gray zone. Include ≥ 3, review = 2, exclude otherwise.</p>
   <div class="toolbar" style="position:static;border:0;padding:8px 0">
     <span class="chip on" data-v="all">All</span>
@@ -372,8 +378,11 @@ TEMPLATE = r"""<!doctype html>
     <span class="chip" data-v="review">Review</span>
     <span class="chip" data-v="exclude">Exclude</span>
     <span class="chip" data-v="unverifiable">Unverifiable</span>
+    <span class="sep"></span>
+    <span class="chip on" data-b="all">All batches</span>
+    __BATCH_CHIPS__
   </div>
-  <table class="audit" id="auditTable"><thead><tr><th>Handle</th><th>Score</th><th>Verdict</th><th>Signals</th><th>Niche hints</th><th>Expected</th></tr></thead><tbody></tbody></table>
+  <table class="audit" id="auditTable"><thead><tr><th>Handle</th><th>Batch</th><th>Score</th><th>Verdict</th><th>Signals</th><th>Niche hints</th><th>Expected</th></tr></thead><tbody></tbody></table>
 </section>
 
 <section id="method">
@@ -457,33 +466,40 @@ render();
 // ---------- audit ----------
 const tb = document.querySelector('#auditTable tbody');
 const sigClass = s => s.startsWith('S')?'s':s.startsWith('M')?'m':s.startsWith('W')?'w':'';
-function auditRows(filter){
-  tb.innerHTML = AUDIT.filter(r=>filter==='all'||r.verdict===filter).map((r,i)=>{
+const AF={v:'all',b:'all'};
+function auditRows(){
+  tb.innerHTML = AUDIT.filter(r=>(AF.v==='all'||r.verdict===AF.v)&&(AF.b==='all'||r.batch===AF.b)).map((r,i)=>{
     const sigs = r.signals.map(s=>`<span class="sig ${sigClass(s)}">${s}</span>`).join('')
       + r.excludes.map(s=>`<span class="sig x">!${s}</span>`).join('')
       + r.gray.map(s=>`<span class="sig g">~${s}</span>`).join('');
     const ev = Object.entries(r.evidence).map(([k,v])=>`<div class="kv"><b>${k}</b> ${escapeHtml(v)}</div>`).join('')
       + r.notes.map(n=>`<div class="kv"><b>note</b> ${escapeHtml(n)}</div>`).join('')
       + (r.fixture_note?`<div class="kv"><b>fixture</b> ${escapeHtml(r.fixture_note)}</div>`:'')
+      + (r.link_resolves_to?`<div class="kv"><b>link →</b> ${escapeHtml(r.link_resolves_to)}</div>`:'')
+      + (r.restricted?`<div class="kv"><b>restricted</b> ${escapeHtml(r.restricted)}</div>`:'')
       + `<div class="kv" style="margin-top:6px;color:var(--ink-3)"><b>bio</b> ${escapeHtml(r.bio||'—')}</div>`
       + `<div class="kv" style="color:var(--ink-3)"><b>highlights</b> ${escapeHtml((r.highlights||[]).join(' · ')||'—')}</div>`
       + `<div class="kv" style="color:var(--ink-3)"><b>links</b> ${escapeHtml((r.links||[]).join(' · ')||'—')}</div>`;
     return `<tr class="row" data-i="${i}"><td><a class="handle" href="https://www.instagram.com/${r.handle}/" target="_blank" rel="noopener" onclick="event.stopPropagation()">@${r.handle}</a>${r.followers?`<div style="font-family:var(--sans);font-size:11px;color:var(--ink-3)">${fmt(r.followers)} followers</div>`:''}</td>
+      <td style="font-size:12px;color:var(--muted)">${r.batch}</td>
       <td><span class="score">${r.score}</span><span class="bar"><i style="width:${r.score*20}%"></i></span></td>
       <td><span class="pill ${r.verdict}">${r.verdict}</span></td>
       <td>${sigs||'<span class="sig">—</span>'}</td>
       <td style="font-family:var(--sans);font-size:12.5px;color:var(--ink-2)">${r.niches.map(n=>n.split(':')[1]).join(', ')||'—'}</td>
-      <td><span class="${r.ok?'ok':'bad'}">${r.ok?'✓':'✗'}</span> <span style="font-family:var(--sans);font-size:12px;color:var(--ink-3)">${r.expected.join(' / ')}</span></td></tr>
-      <tr class="detail" style="display:none"><td colspan="6">${ev}</td></tr>`;
+      <td>${r.expected.length?`<span class="${r.ok?'ok':'bad'}">${r.ok?'✓':'✗'}</span> <span style="font-size:12px;color:var(--muted)">${r.expected.join(' / ')}</span>`:'<span style="color:var(--muted-2)">— prospect</span>'}</td></tr>
+      <tr class="detail" style="display:none"><td colspan="7">${ev}</td></tr>`;
   }).join('');
   tb.querySelectorAll('tr.row').forEach(tr=>tr.addEventListener('click',()=>{const d=tr.nextElementSibling; d.style.display = d.style.display==='none'?'':'none';}));
 }
 function fmt(n){return n>=1e6?(n/1e6).toFixed(1).replace(/\.0$/,'')+'M':n>=1e3?(n/1e3).toFixed(n<10000?1:0).replace(/\.0$/,'')+'K':String(n);}
 function escapeHtml(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 document.querySelectorAll('#audit .chip[data-v]').forEach(ch=>ch.addEventListener('click',()=>{
-  document.querySelectorAll('#audit .chip[data-v]').forEach(x=>x.classList.remove('on')); ch.classList.add('on'); auditRows(ch.dataset.v);
+  document.querySelectorAll('#audit .chip[data-v]').forEach(x=>x.classList.remove('on')); ch.classList.add('on'); AF.v=ch.dataset.v; auditRows();
 }));
-auditRows('all');
+document.querySelectorAll('#audit .chip[data-b]').forEach(ch=>ch.addEventListener('click',()=>{
+  document.querySelectorAll('#audit .chip[data-b]').forEach(x=>x.classList.remove('on')); ch.classList.add('on'); AF.b=ch.dataset.b; auditRows();
+}));
+auditRows();
 
 // ---------- rail highlight ----------
 const links=[...document.querySelectorAll('.rail nav a')];
@@ -557,6 +573,8 @@ def main() -> None:
 
     n_niches = sum(len(f["niches"]) for f in data["families"])
     n_examples = len({e["handle"] for f in data["families"] for n in f["niches"] for e in n["examples"]})
+    batches = list(dict.fromkeys(r["batch"] for r in rows))
+    batch_chips = "".join(f'<span class="chip" data-b="{b}">{html.escape(b)}</span>' for b in batches)
     fam_chips = "".join(f'<span class="chip" data-fam="{f["code"]}">{f["code"]} · {html.escape(f["name"])}</span>' for f in data["families"])
 
     css = open(os.path.join(ROOT, "dashboard", "theme.css"), encoding="utf-8").read()
@@ -573,9 +591,11 @@ def main() -> None:
             .replace("__N_EXAMPLES__", str(n_examples))
             .replace("__N_PROV__", str(len(data["provisional"]["rows"])))
             .replace("__N_AUDIT__", str(len(rows)))
-            .replace("__AUDIT_OK__", str(sum(1 for r in rows if r["ok"])))
+            .replace("__N_PROSPECTS__", str(sum(1 for r in rows if r["batch"] != "fixtures")))
+            .replace("__AUDIT_OK__", str(sum(1 for r in rows if r["expected"] and r["ok"])))
             .replace("__INTRO__", "".join(f"<p>{p}</p>" for p in data["intro"]))
             .replace("__FAM_CHIPS__", fam_chips)
+            .replace("__BATCH_CHIPS__", batch_chips)
             .replace("__FIT_TABLE__", fit_table(data["fit_matrix"]))
             .replace("__FIT_READING__", data["fit_matrix"]["reading"])
             .replace("__PROV_TABLE__", table_html(data["provisional"]["header"], data["provisional"]["rows"], "doc prov"))
