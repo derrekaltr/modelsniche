@@ -18,18 +18,20 @@ Principle: **OF creators obscure the commercial relationship (euphemism, coded h
 | S4 | Explicit backup/alt-account structure: "this is my BACKUP account", "Official backup page for @…", "Backup account is @…", "Main acct @…", "go to @x_ for more", "Exclusive @…", "MAIN PAGE" + "2ND/3RD Instagram", "@handle on everything" | `@dailystonergirl`, `@maxkfit_backup`, `@fullmetalifrit`, `@spicycowgirlofficial_`, `@cierra_mistt`, `@_li.si_`, `@therealbarbiede`, `@gothravemommy` |
 | S5 | Zero-/one-post "pointer" account whose only content is a link or a handle: "Check below for more 👇 + link", "Get to know me? @…", "🔥Exclusive content🔥 + link" | `@cierra_mistt_`, `@aliyaroseofc`, `@exclusive_lisi` |
 | S6 | Pun or in-joke naming the platform: "Only brother", podcast "OnlyFeehans" | `@yetifit__`, `@kerrynfeehan` |
+| S7 | **Instagram age-gates the profile for logged-out viewers** ("You must be 18 years old or over to see this profile") — a platform-assigned adult flag, visible without logging in | `@amber_hazee`, `@guadadia` (prospect batch 01) |
 
 ### Medium (two of these, or one plus any Weak, is sufficient)
 
 | # | Signal | Observed on |
 |---|---|---|
 | M1 | Highlight named with a coded CTA: "VIP" / "VIP Access" / "💙VIP💙", "EXCLUSIVE 🚨", "🌶️", "👀", "🔗", "More 📎", "Click here :)", "Here ☝️", "Find me", "Check here!!!", "Links", "Important", "Important Info!", "Verification" | `@bigguswombus`, `@katie_k_beach__`, `@salicerose`, `@sydneylint`, `@peachjars`, `@girthmasterr`, `@peytonkinsly`, `@momycarterx`, `@elainastjames`, `@viktoria_winslow`, `@theanyamatusevich`, `@giagotham`, `@spicytattoodoll`, `@ubeayork` |
-| M2 | Link tool commonly used to front adult links: **link.me**, **AllMyLinks**, **Beacons**, **hoo.be**, **onlylinks.com**, **bonafide.us**, **Linktree whose page title is "<name> OnlyFans Official – Exclusive Content & Account"** (Linktree auto-titles pages this way when an OF tile exists — fetch the page to confirm) | link.me: `@spicycowgirlofficial_`, `@_li.si_`, `@victoriastwitch`, `@petitelilpeach`; AllMyLinks: `@gothravemommy`; Beacons: `@giagotham`, `@curvybaddie18`; hoo.be: `@therealbarbiede`; onlylinks: `@cierra_mistt_`; Linktree-OF-title: `@countrygirl_nat`, `@stonergirldaily`, `@brittymigs`, `@kerrynfeehan`, `@julietinthewild`, `@katie_k_beach__` |
+| M2 | Link tool commonly used to front adult links: **link.me**, **AllMyLinks** / **GetAllMyLinks**, **Beacons**, **hoo.be**, **onlylinks.com**, **bonafide.us**, **Supalink** (custom `.vip`/`.fit` domains that redirect to `supalink.ai` — landing copy like "Your dream girl… What you're looking for 🤍🩵" / "Chat with me" is an adult funnel and counts as a confirmed tile), **Linktree whose page title is "<name> OnlyFans Official – Exclusive Content & Account"** (Linktree auto-titles pages this way when an OF tile exists — fetch the page to confirm) | link.me: `@spicycowgirlofficial_`, `@_li.si_`, `@victoriastwitch`, `@petitelilpeach`; AllMyLinks: `@gothravemommy`; Beacons: `@giagotham`, `@curvybaddie18`; hoo.be: `@therealbarbiede`; onlylinks: `@cierra_mistt_`; Linktree-OF-title: `@countrygirl_nat`, `@stonergirldaily`, `@brittymigs`, `@kerrynfeehan`, `@julietinthewild`, `@katie_k_beach__` |
 | M3 | Custom-domain buffer link that is clearly personal, not a business site: `firstname.business`, `handle.com`, `yummy<name>.com`, `<name>.vip`, `<name>sadventures.com/welcome` | `@theanyamatusevich`, `@spicytattoodoll`, `@gothpixi`, `@mommypaigexo`, `@iamjasonluv`, `@lilliluxe` |
 | M4 | "Content Creator" / "Digital creator" self-label **combined with** an emoji set from {🌶️ 🍑 🔞 😈 👀 💦 🥵} or the word "spicy"/"exclusive" | `@katie_k_beach__` ("Content Creator 🇦🇺👙 … 😜💋"), `@countrygirl_nat` ("Spicy country girl 💦") |
 | M5 | "TOP %" / "Top 1%" / "Top 0.x%" boast in bio (OF creator-ranking language) | `@spicycowgirlofficial_`, `@countrybadasstay`, `@countrygirl_nat` |
 | M6 | Wishlist / "Spoil me" / Throne / Telegram highlight or link with no other commercial explanation | `@thesilviasaige` ("Wishlist"), `@julietinthewild` ("Wishlist ❤️"), `@momycarterx` ("Telegram 🤍") |
 | M7 | "NO DMS HERE ❌", "NO MEETUPS", "No DMs — use the link" (deflecting DMs to the paid channel) | `@curvybaddie18`, `@its.lucy.bb` |
+| M8 | Instagram shows "Restricted profile — unavailable for certain audiences" to logged-out viewers (softer than the 18+ gate; also applied for other policy reasons) | `@shaynaholt`, `@lilia.angelx` (prospect batch 01) |
 
 ### Weak (supporting only — never sufficient alone)
 
@@ -91,7 +93,7 @@ Reminder: an exclude signal is *not* a veto. Several OF creators carry brand dea
 | Score | Meaning | Rule |
 |---|---|---|
 | 5 | Explicit | S1 or S3 |
-| 4 | Coded but unambiguous | S2, S4, S5 or S6 |
+| 4 | Coded but unambiguous | S2, S4, S5, S6 or S7 |
 | 3 | Funnel evident | ≥2 Medium, or 1 Medium + 1 Weak |
 | 2 | Suggestive | exactly 1 Medium |
 | 1 | Hint only | Weak signals only |
@@ -172,6 +174,25 @@ Applying the rules to every example in `niches.md` and to the control set. ✔ =
 | `@justliketrevor` | G3 borderline | 0–1 | ✔ (excluded; flag as OF-person) |
 | `@connerbobay` | none | 0 | ✔ (listicle claimed OF; IG shows "Husband · Father · Jesus", no funnel — correct negative) |
 | `@noelle_best` | none | 0 | ✔ (listicle claimed OF; nothing on IG) |
+
+### Prospect batch 01 (12 real prospects, collected logged-out on 2026-08-28)
+
+| Handle | Result | What decided it |
+|---|---|---|
+| `@amber_hazee`, `@guadadia` | **include** (4) | Instagram 18+ age-gate on the profile (S7) — nothing else visible logged-out |
+| `@shaynaholt`, `@lilia.angelx` | review (2) | "Restricted profile — unavailable for certain audiences" (M8); needs a logged-in look |
+| `@valebragg`, `@jane.mautin` | **include** (3) | `.vip` domain → Supalink landing: "Your dream girl… What you're looking for 🤍🩵" (M2 + M3) |
+| `@lizakovalenkoo` | **include** (3) | IG reads "Fashion / Lifestyle · @revolve ambassador" (X3, X4) but `lizaswrld.com` → Supalink "Your dream girl 🖤 Chat with me" — include overrides exclude; resolved via decision-tree step 4 |
+| `@4mbuh` | **include** (3) | `4mbuh.com` → GetAllMyLinks "MORE OF ME" → `onlyfans.com/ambzy`; "👀" highlight, Twitch/Discord stack |
+| `@alarahbelle` | **include** (3) | `alarah.link` shows an 18+ "Sensitive Content" gate before the tiles (the gate is the tell); bio carries a supplement discount code (X4) — overridden |
+| `@anllela_sagra` | **include** (3, celebrity tier) | "Exclusive" highlight + `.fit` domain → Supalink "Explore More 💕😉"; 26.7M followers → G6 flag |
+| `@hcoxofficial` | exclude (1) | "Chevy Girl 🐾 Bulldog Momma", no link, no highlights — nothing to act on |
+| `@lalovetheboss` | exclude (0) | Artist/actress, music smart-link, management email — musician, not OF-branded |
+
+**What this batch taught the rules**
+- **Instagram's own logged-out gates are the strongest cheap signal**: an 18+ age-gate (S7) or "certain audiences" restriction (M8) is platform-assigned and visible without logging in. Four of twelve prospects carried one.
+- **Supalink** (`supalink.ai`, usually behind a vanity `.vip` / `.fit` / `.com`) is an OF-funnel landing tool; its GFE copy ("Your dream girl", "What you're looking for", "Chat with me") is as good as an OF tile. Added to M2.
+- **Resolve the link before deciding.** Five of the seven includes were only decidable by opening the bio link — the profile alone scored 2. The collector now records what each link resolves to.
 
 **Misfires observed and how the rules were adjusted**
 - Listicle presence alone (W2) produced several false positives (`@connerbobay`, `@noelle_best`, `@gabbyepstein`) → W2 demoted to Weak, never sufficient.

@@ -19,6 +19,8 @@ Input: JSON Lines or a JSON array of profile records. All fields optional except
     confirmed_adult_tile bool  reviewer opened the link tool and saw an OF/Fansly/Fanvue/LoyalFans tile
     listicle             bool  named in an OF-creator listicle (weak corroboration)
     press                bool  press names the person as an OF creator (weak; confirms person, not account)
+    restricted           str   "18+" if Instagram age-gates the profile for logged-out viewers (strong),
+                               "audience" if it shows 'unavailable for certain audiences' (medium)
 
 Output per profile: score 0-5, verdict (include / review / exclude / unverifiable),
 signal codes that fired, gray-zone codes, and keyword niche hints.
@@ -127,7 +129,7 @@ W6_HIGHLIGHT = [r"^\s*[" + AMBIG_EMOJI + r"\s️]+$"]
 M2_DOMAINS = [
     "link.me", "allmylinks.com", "beacons.ai", "hoo.be", "onlylinks.com", "bonafide.us",
     "snipfeed", "linkr.bio", "campsite.bio", "solo.to", "linkin.bio", "linkme.",
-    "throne.com", "wishtender.com",
+    "throne.com", "wishtender.com", "supalink.ai", "getallmylinks.com", "fanfix.io", "passes.com",
 ]
 LINKTREE = "linktr.ee"
 MAINSTREAM = ["instagram.com", "x.com", "twitter.com", "tiktok.com", "youtube.com", "youtu.be",
@@ -306,6 +308,7 @@ def classify(p: dict) -> Result:
     if posts is not None and posts <= 1 and following <= 5 and (links or re.search(r"@\w{3,}", bio)):
         strong += hit("S5", f"{posts} post(s), following {following}, pointer bio")
     strong += hit("S6", any_re(S6, everything))
+    strong += hit("S7", "Instagram 18+ age-gate on profile" if p.get("restricted") == "18+" else None)
 
     # ---- medium ---------------------------------------------------------------
     medium = 0
@@ -349,6 +352,7 @@ def classify(p: dict) -> Result:
     medium += hit("M6", first_hl(M6_HIGHLIGHT, highs) or any_re(M6_BIO, bio)
                   or next((d for l in links for d in ("throne.com", "wishtender", "t.me/") if d in l), None))
     medium += hit("M7", any_re(M7, bio))
+    medium += hit("M8", "Instagram audience-restricted profile" if p.get("restricted") == "audience" else None)
 
     # ---- weak -----------------------------------------------------------------
     weak += hit("W1", next((f for f in followed_by if f in W1_AGENCIES), None))
@@ -384,6 +388,10 @@ def classify(p: dict) -> Result:
     elif weak:
         r.score, r.tier = 1, "weak"
 
+    # decision-tree step 4: a lone medium signal is resolved by opening the link tool
+    if r.score == 2 and p.get("confirmed_adult_tile"):
+        r.score = 3
+        r.notes.append("resolved by opening the link tool — adult tile confirmed (decision tree step 4)")
     r.verdict = "include" if r.score >= 3 else "review" if r.score == 2 else "exclude"
 
     # ---- notes ----------------------------------------------------------------
@@ -391,7 +399,7 @@ def classify(p: dict) -> Result:
         r.notes.append("cross-references an alt/main (G2) — tag as OF-creator; verify the paired account")
     if r.excludes and r.verdict == "include":
         r.notes.append("include signals override exclude signals (brand deals + funnel both present)")
-    if r.verdict == "exclude" and not r.signals and not r.excludes and not private and not r.gray:
+    if r.verdict == "exclude" and not r.signals and not r.excludes and not private and not r.gray and not p.get("restricted"):
         r.notes.append("no signals either way — may be a sanitized main (G1)")
     if r.verdict == "exclude" and p.get("press") and not strong:
         r.notes.append("press confirms the person, not this account (G1) — IG-only negative is correct")
